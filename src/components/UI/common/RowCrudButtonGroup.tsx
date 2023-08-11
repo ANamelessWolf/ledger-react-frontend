@@ -20,32 +20,26 @@ const RowCrudButtonGroup: React.FC<IRowCrudButtonGroup> = ({
   deleteHandler = dummyDelete,
 }) => {
   return (
-    <Container>
-      <Row>
-        <Col>
-          <CrudButton
-            path={path}
-            type={ActionType.SHOW}
-            id={id}
-          />
-        </Col>
-        <Col>
-          <CrudButton
-            path={path}
-            type={ActionType.EDIT}
-            id={id}
-          />
-        </Col>
-        <Col>
-          <CrudButton
-            path={path}
-            type={ActionType.DELETE}
-            id={id}
-            deleteHandler={deleteHandler}
-          />
-        </Col>
-      </Row>
-    </Container>
+    <td>
+      <Container>
+        <Row>
+          <Col>
+            <CrudButton path={path} type={ActionType.SHOW} id={id} />
+          </Col>
+          <Col>
+            <CrudButton path={path} type={ActionType.EDIT} id={id} />
+          </Col>
+          <Col>
+            <CrudButton
+              path={path}
+              type={ActionType.DELETE}
+              id={id}
+              deleteHandler={deleteHandler}
+            />
+          </Col>
+        </Row>
+      </Container>
+    </td>
   );
 };
 

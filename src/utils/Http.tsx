@@ -1,6 +1,5 @@
-import axios, { InternalAxiosRequestConfig } from "axios";
+import axios, { AxiosResponse } from "axios";
 import CONST from "../data/constants";
-import React, { useCallback, useState } from "react";
 import { toast } from "react-toastify";
 
 export const AxiosInstance = axios.create({
@@ -8,7 +7,6 @@ export const AxiosInstance = axios.create({
   //   withCredentials: false,
   headers: {
     "Content-Type": "application/json",
-    // "Access-Control-Allow-Origin": "*",
   },
 });
 
@@ -23,52 +21,53 @@ export interface IProcessingRequest {
   message: string;
 }
 
+export interface ISuccessHandler {
+  response: AxiosResponse<any, any>;
+  succeedHandler: (status: number, data: any) => void;
+  updateProcessing?: React.Dispatch<React.SetStateAction<IProcessingRequest>>;
+}
+
 const HttpUtils = {
   BUILD_PATH: (path: string, id: number | undefined = undefined): string => {
     const endpoint = `${CONST.API_URL}/${path}`;
     return id === undefined ? endpoint : `${endpoint}/${id}`;
   },
+  LOADING_STATE: { state: LoadingStateType.LOADING, message: "Fetching..." },
+  LOADING_SUCCEED_STATE: {
+    state: LoadingStateType.LOADED,
+    message: "Fetching completed",
+  },
+  LOADING_FAIL_STATE: {
+    state: LoadingStateType.LOADED,
+    message: "Fetching failed",
+  },
+  DFTL_ERR_HANDLER: (message: string) => {
+    toast.error(message);
+  },
 };
-export default HttpUtils;
 
-const defaultErrorHandler = (message: string) => {
-  toast.error(message);
-};
+export default HttpUtils;
 
 export function GET(
   path: string,
-  setIsProccesing,
-  succeedHandler: (status: number, data: any) => void,
-  errorHandler: (error: string) => void = defaultErrorHandler,
-  id: number | undefined = undefined
-): void {
+  onfulfilled: (status: number, data: any) => void,
+  id?: number,
+  onrejected?: (error: string) => void
+) {
+  const url = HttpUtils.BUILD_PATH(path, id);
   try {
-    setIsProccesing({
-      state: LoadingStateType.LOADING,
-      message: "Fetching...",
-    });
-    AxiosInstance.get(HttpUtils.BUILD_PATH(path, id))
-      .then((response) => {
-        succeedHandler(response.status, response.data);
-        setIsProccesing({
-          state: LoadingStateType.LOADED,
-          message: "Fetching completed",
-        });
-      })
-      .catch((e) => {
-        console.log("Error fetching data: ", e);
-        setIsProccesing({
-          state: LoadingStateType.LOADED,
-          message: "Fetching failed",
-        });
-        errorHandler(e.message);
+    AxiosInstance.get(url)
+      .then((response) => onfulfilled(response.status, response.data))
+      .catch((error) => {
+        console.log(error);
+        if (onrejected !== undefined) {
+          onrejected(error.message);
+        }
       });
-  } catch (e) {
-    console.log("Error fetching data: ", e);
-    setIsProccesing({
-      state: LoadingStateType.LOADED,
-      message: "Fetching failed",
-    });
-    errorHandler(e.message);
+  } catch (error) {
+    console.log(error);
+    if (onrejected !== undefined) {
+      onrejected(error.message);
+    }
   }
 }

@@ -4,6 +4,7 @@ const TABLE_NAMES = {
 
 const END_POINTS = {
   FINANCIAL_ENTITY: "FinancingEntity",
+  CATALOGUE:"Catalogue"
 };
 
 const API_URL =

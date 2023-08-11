@@ -2,15 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
+import { AppProvider } from "./context/AppContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <App />
+    <AppProvider>
+      <App />
+    </AppProvider>
   </BrowserRouter>
 );
 

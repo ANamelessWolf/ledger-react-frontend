@@ -39,15 +39,15 @@ const CrudButton: React.FC<ICrudButton> = ({
   ): [string, IconDefinition, () => void] => {
     switch (actionType) {
       case ActionType.CREATE:
-        return ["secondary", faSquarePlus, () => navigate(`${path}/create`)];
+        return ["secondary", faSquarePlus, () => navigate(`/${path}/create`)];
       case ActionType.SHOW:
-        return ["primary", faEye, () => navigate(`${path}/${id}`)];
+        return ["primary", faEye, () => navigate(`/${path}/${id}`)];
       case ActionType.EDIT:
-        return ["light", faPenToSquare, () => navigate(`${path}/edit/${id}`)];
+        return ["light", faPenToSquare, () => navigate(`/${path}/edit/${id}`)];
       case ActionType.DELETE:
         return ["danger", faTrash, () => deleteHandler(id)];
       default:
-        return ["info", faBan, () => navigate(`${path}`)];
+        return ["info", faBan, () => navigate(`/${path}`)];
     }
   };
 
