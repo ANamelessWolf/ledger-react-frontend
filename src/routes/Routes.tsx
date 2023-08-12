@@ -6,10 +6,10 @@ import FinancingEntityIndex from "../views/FinancingEntity/FinancingEntityIndex"
 import FinancingEntityEdit from "../views/FinancingEntity/FinancingEntityEdit";
 import FinancingEntityShow from "../views/FinancingEntity/FinancingEntityShow";
 
-const FinancingEntity: IRoute[] = [
+const FinancingEntityRoutes: IRoute[] = [
     { path: CONST.TABLE_NAMES.FINANCIAL_ENTITY, element: <FinancingEntityIndex/> },
     { path: `${CONST.TABLE_NAMES.FINANCIAL_ENTITY}/create`, element: <FinancingEntityEdit/> },
     { path: `${CONST.TABLE_NAMES.FINANCIAL_ENTITY}/edit/:id`, element: <FinancingEntityEdit/> },
     { path: `${CONST.TABLE_NAMES.FINANCIAL_ENTITY}/:id`, element: <FinancingEntityShow/> },
 ];
-export default FinancingEntity;
+export default FinancingEntityRoutes;
