@@ -26,6 +26,7 @@ const HEADERS = ["ID", "Nombre", "Descripción", "Entidad financiera"];
 const FIELD_MAP = UiUtils.ToObject(FIELDS, HEADERS, "Actions");
 
 const FinancingEntityModel = {
+  endPoint: CONST.END_POINTS.FINANCIAL_ENTITY,
   empty: [
     {
       Id: -1,

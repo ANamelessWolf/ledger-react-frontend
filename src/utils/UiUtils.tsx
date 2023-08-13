@@ -1,3 +1,4 @@
+import { ButtonType } from "../components/UI/enums/ButtonType";
 import { DataType } from "../components/UI/enums/DataType";
 import { LoadingStateType } from "./Http";
 import { VerboseType } from "./VerboseType";
@@ -55,6 +56,34 @@ const UiUtils = {
       console.log(error);
       return false;
     }
+  },
+  GetButtonVariant(btnType: ButtonType) {
+    if (btnType === ButtonType.OK) {
+      return "primary";
+    } else if (btnType === ButtonType.CANCEL) {
+      return "secondary";
+    } else if (btnType === ButtonType.YES) {
+      return "danger";
+    } else if (btnType === ButtonType.NO) {
+      return "primary";
+    } else if (btnType === ButtonType.SUBMIT) {
+      return "success";
+    }
+    return "info";
+  },
+  GetButtonHeader(btnType: ButtonType) {
+    if (btnType === ButtonType.OK) {
+      return "Ok";
+    } else if (btnType === ButtonType.CANCEL) {
+      return "Cancelar";
+    } else if (btnType === ButtonType.YES) {
+      return "Sí";
+    } else if (btnType === ButtonType.NO) {
+      return "No";
+    } else if (btnType === ButtonType.SUBMIT) {
+      return "Enviar";
+    }
+    return "Info";
   },
 };
 export default UiUtils;

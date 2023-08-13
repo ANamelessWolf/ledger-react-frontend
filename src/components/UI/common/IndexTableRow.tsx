@@ -33,7 +33,7 @@ const IndexTableRow: React.FC<IIndexTableRow> = ({
           <RowCrudButtonGroup
             path={path}
             id={row[primary_key]}
-            deleteHandler={dummyDelete}
+            deleteHandler={deleteHandler}
           />
       </tr>
     );

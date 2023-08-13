@@ -1,5 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import HttpUtils, { GET, IProcessingRequest, LoadingStateType } from "../../utils/Http";
+import HttpUtils, {
+  GET,
+  IProcessingRequest,
+  LoadingStateType,
+} from "../../utils/Http";
 import CONST from "../../data/constants";
 import SpinningLoader from "../../components/UI/common/SpinningLoader";
 import UiUtils from "../../utils/UiUtils";
@@ -8,6 +13,7 @@ import FinancingEntityModel, {
   IFinancingEntityView,
 } from "./FinancingEntityModel";
 import IndexTable from "../../components/UI/common/IndexTable";
+import MESSAGES from "../../data/messages";
 
 function FinancingEntityIndex() {
   const [isProccessing, setIsProccesing] = useState<IProcessingRequest>({
@@ -29,15 +35,30 @@ function FinancingEntityIndex() {
     toast.info("Error loading financing data");
   };
 
-  useEffect(() => {
+  const refresh = () => {
     setIsProccesing(HttpUtils.LOADING_STATE);
-    GET(CONST.END_POINTS.FINANCIAL_ENTITY, fetchHandler, undefined, errorHandler);
+    GET(
+      CONST.END_POINTS.FINANCIAL_ENTITY,
+      fetchHandler,
+      undefined,
+      errorHandler
+    );
+  };
+
+  useEffect(() => {
+    refresh();
   }, []);
 
   return UiUtils.IsProccessing(isProccessing.state) ? (
     <SpinningLoader message={isProccessing.message} />
   ) : (
-    <IndexTable blueprint={FinancingEntityModel.index} data={viewData} />
+    <IndexTable
+      header={MESSAGES.SECTION_FINANCING_ENT}
+      blueprint={FinancingEntityModel.index}
+      data={viewData}
+      path={FinancingEntityModel.endPoint}
+      refresh={refresh}
+    />
   );
 }
 

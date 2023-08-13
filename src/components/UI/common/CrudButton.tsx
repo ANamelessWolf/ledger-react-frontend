@@ -39,7 +39,7 @@ const CrudButton: React.FC<ICrudButton> = ({
   ): [string, IconDefinition, () => void] => {
     switch (actionType) {
       case ActionType.CREATE:
-        return ["secondary", faSquarePlus, () => navigate(`/${path}/create`)];
+        return ["light", faSquarePlus, () => navigate(`/${path}/create`)];
       case ActionType.SHOW:
         return ["primary", faEye, () => navigate(`/${path}/${id}`)];
       case ActionType.EDIT:
@@ -58,7 +58,7 @@ const CrudButton: React.FC<ICrudButton> = ({
       {header !== undefined ? (
         <span>
           <FontAwesomeIcon icon={icon} fontSize={size} />
-          {header}
+          {" " + header}
         </span>
       ) : (
         <FontAwesomeIcon icon={icon} fontSize={size} />

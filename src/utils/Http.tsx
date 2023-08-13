@@ -33,6 +33,9 @@ const HttpUtils = {
     const endpoint = `${CONST.API_URL}/${path}`;
     return id === undefined ? endpoint : `${endpoint}/${id}`;
   },
+  DELETE_PATH: (path: string, id: number): string => {
+    return `${CONST.API_URL}/${path}?id=${id}`;
+  },
   LOADING_STATE: { state: LoadingStateType.LOADING, message: "Fetching..." },
   LOADING_SUCCEED_STATE: {
     state: LoadingStateType.LOADED,
@@ -120,6 +123,30 @@ export function POST(
   const url = HttpUtils.BUILD_PATH(path);
   try {
     AxiosInstance.post(url, payload)
+      .then((response) => onfulfilled(response.status, response.data))
+      .catch((error) => {
+        console.log(error);
+        if (onrejected !== undefined) {
+          onrejected(error.message);
+        }
+      });
+  } catch (error) {
+    console.log(error);
+    if (onrejected !== undefined) {
+      onrejected(error.message);
+    }
+  }
+}
+
+export function DELETE(
+  path: string,
+  id: number,
+  onfulfilled: (status: number, data: any) => void,
+  onrejected?: (error: string) => void
+) {
+  const url = HttpUtils.DELETE_PATH(path, id);
+  try {
+    AxiosInstance.delete(url)
       .then((response) => onfulfilled(response.status, response.data))
       .catch((error) => {
         console.log(error);
