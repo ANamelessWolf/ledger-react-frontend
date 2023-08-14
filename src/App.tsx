@@ -1,14 +1,14 @@
 import "./App.css";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import FinancingEntityRoutes from "./routes/Routes";
+import { FinancingEntityRoutes, CreditCardRoutes } from "./routes/Routes";
 import AuthContainer from "./components/Auth/AuthContainer";
 import HeaderBar from "./components/Header/HeaderBar";
 import Footer from "./components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
 
 function App() {
-  const routes = [...FinancingEntityRoutes];
+  const routes = [...FinancingEntityRoutes, ...CreditCardRoutes];
   // const logo = require("./logo.svg") as string;
   return (
     <div className="App">
@@ -27,7 +27,14 @@ function App() {
           </>
         </Routes>
       </main>
-      <ToastContainer position="bottom-right" autoClose={1000} closeOnClick pauseOnFocusLoss pauseOnHover theme="dark"/>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        closeOnClick
+        pauseOnFocusLoss
+        pauseOnHover
+        theme="dark"
+      />
       <Footer />
     </div>
   );
