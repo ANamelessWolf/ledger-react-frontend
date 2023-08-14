@@ -5,6 +5,9 @@ export interface ICatalogueItem {
 
 export interface IAppCatalogue {
   FinancingType: ICatalogueItem[];
+  FinancingEntity:ICatalogueItem[],
+  CardType:ICatalogueItem[],
+  CreditCard:ICatalogueItem[]
 }
 
 export interface IAppContext {
