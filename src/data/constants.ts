@@ -1,9 +1,11 @@
 const TABLE_NAMES = {
   FINANCIAL_ENTITY: "financing_entity",
+  CREDIT_CARD: "credit_card",
 };
 
 const END_POINTS = {
   FINANCIAL_ENTITY: "FinancingEntity",
+  CREDIT_CARD:"CreditCard",
   CATALOGUE:"Catalogue"
 };
 

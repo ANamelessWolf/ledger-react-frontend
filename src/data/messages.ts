@@ -6,6 +6,7 @@ const MESSAGES_ES = {
   BTN_ADD: "Agregar nuevo",
 
   SECTION_FINANCING_ENT: "Entidad financiera",
+  SECTION_CREDIT_CARD: "Tarjetas",
 
 };
 
