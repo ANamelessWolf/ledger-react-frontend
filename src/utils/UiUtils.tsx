@@ -1,5 +1,6 @@
 import { ButtonType } from "../components/UI/enums/ButtonType";
 import { DataType } from "../components/UI/enums/DataType";
+import { ICatalogueItem } from "../context/ICatalogue";
 import { LoadingStateType } from "./Http";
 import { VerboseType } from "./VerboseType";
 const UiUtils = {
@@ -84,6 +85,19 @@ const UiUtils = {
       return "Enviar";
     }
     return "Info";
+  },
+
+  GetCreditCardColors(): ICatalogueItem[] {
+    return [
+      { Id: 1, Key: "blue", Description: "Blue" },
+      { Id: 2, Key: "lightblue", Description: "Light blue" },
+      { Id: 3, Key: "tangerine", Description: "Tangerine" },
+      { Id: 4, Key: "platinum", Description: "Platinum" },
+      { Id: 5, Key: "red", Description: "Red" },
+      { Id: 6, Key: "yellow", Description: "Yellow" },
+      { Id: 7, Key: "gold", Description: "Gold" },
+      { Id: 8, Key: "black", Description: "Black" },
+    ];
   },
 };
 export default UiUtils;

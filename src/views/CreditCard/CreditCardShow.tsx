@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import UiUtils from "../../utils/UiUtils";
 import SpinningLoader from "../../components/UI/common/SpinningLoader";
 import HttpUtils, { IProcessingRequest, LoadingStateType } from "../../utils/Http";
-import CONST from "../../data/constants";
 import { toast } from "react-toastify";
 import CreditCardModel, { ICreditCardView } from "./CreditCardModel";
+import CreditCard from "../../components/CreditCard/CreditCard";
 
 function CreditCardShow() {
     const [isProccessing, setIsProccesing] = useState<IProcessingRequest>({
@@ -28,6 +28,7 @@ function CreditCardShow() {
   
     const refresh = () => {
       setIsProccesing(HttpUtils.LOADING_STATE);
+      setIsProccesing(HttpUtils.LOADING_SUCCEED_STATE);
     };
   
     useEffect(() => {
@@ -37,7 +38,7 @@ function CreditCardShow() {
     return UiUtils.IsProccessing(isProccessing.state) ? (
       <SpinningLoader message={isProccessing.message} />
     ) : (
-      <>Tarjeta de credito Show</>
+      <CreditCard  EndingCardNumber="1003" ExpirationDate="10/25" color="blue" CardType="MASTERCARD" FinancingEntity="BBVA" CardHolder="Miguel Angel Alanis Montes"/>
     );
   }
   

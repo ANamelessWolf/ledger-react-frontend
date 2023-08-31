@@ -1,0 +1,141 @@
+.blue {
+  background-color: #007991;
+  color: #bcd8c1;
+  svg {
+    fill: #222e50;
+  }
+}
+
+.lightblue {
+  background-color: #b8e1ff;
+  color: black;
+  svg {
+    fill: #586f7c;
+  }
+}
+
+.tangerine {
+  background-color: #d4a0a7;
+  color: #e3e3e3;
+  svg {
+    fill: #c84630;
+  }
+}
+
+.platinum {
+  background-color: #636363;
+  color: #dbdbdb;
+  svg {
+    fill: #4c4c4c;
+  }
+}
+
+.red {
+  background-color: #f22b29;
+  color: #f0f0f1;
+  svg {
+    fill: #d72638;
+  }
+}
+
+.yellow {
+  background-color: #fcba04;
+  color: black;
+  svg {
+    fill: #a55801;
+  }
+}
+
+.gold {
+  background-color: #eedc38;
+  color: black;
+  svg {
+    fill: #a58c01ea;
+  }
+}
+
+.black {
+    background-color: #171219;
+    color: #dbdbdb;
+    svg {
+      fill: #040303;
+    }
+  }
+
+
+.creditcard {
+  display: flex;
+  font-family: "Source Code Pro", monospace;
+  align-items: center;
+  justify-content: center;
+  .front {
+    position: relative;
+    padding: 25px;
+    border-radius: 28px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    .cc-svg {
+      border-radius: 28px;
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+  .cc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+  }
+  .cc-details {
+    margin-top: 52px;
+    display: flex;
+    align-items: flex-end;
+    text-align: left;
+    justify-content: space-between;
+    .name-number {
+      width: 100%;
+    }
+    .number {
+      margin-top: 4px;
+      font-size: 2rem;
+      text-align: center;
+    }
+    .name {
+      margin-top: 4px;
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+}
+
+.logo {
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 48px;
+  h6 {
+    text-align: left;
+    font-weight: bold;
+  }
+}
+
+.cch5 {
+  position: relative;
+  font-size: 2.5rem;
+  margin-left: 10px;
+  text-align: right;
+  font-weight: 500;
+}
+
+.valid-date {
+  h6 {
+    font-size: smaller;
+  }
+  h5 {
+    font-size: medium;
+    font-weight: 400;
+  }
+}

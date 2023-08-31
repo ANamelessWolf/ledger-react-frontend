@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import { IAppContext, ICatalogueItem } from "./ICatalogue";
 import { GET } from "../utils/Http";
 import CONST from "../data/constants";
+import UiUtils from "../utils/UiUtils";
 
 const AppContext = createContext<IAppContext>({
   catalogue: {
@@ -9,6 +10,7 @@ const AppContext = createContext<IAppContext>({
     FinancingEntity: [],
     CardType: [],
     CreditCard: [],
+    CreditCardColors: [],
   },
 });
 
@@ -18,6 +20,7 @@ export const AppProvider = (props) => {
   const [financingEntity, setFinancingEntity] = useState<ICatalogueItem[]>([]);
   const [cardType, setCardType] = useState<ICatalogueItem[]>([]);
   const [creditCard, setCreditCard] = useState<ICatalogueItem[]>([]);
+  const [cardColors, setCardColors] = useState<ICatalogueItem[]>([]);
 
   const fetchHandler = (status: number, data: any) => {
     const financingTypes = data.financingEntityType.map((item) => {
@@ -39,6 +42,7 @@ export const AppProvider = (props) => {
       return { Id: item.id, Description: item.description };
     });
     setCreditCard(creditCard);
+    setCardColors(UiUtils.GetCreditCardColors());
   };
 
   useEffect(() => {
@@ -53,6 +57,7 @@ export const AppProvider = (props) => {
           FinancingEntity: financingEntity,
           CardType: cardType,
           CreditCard: creditCard,
+          CreditCardColors: cardColors,
         },
       }}
     >
