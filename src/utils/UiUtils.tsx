@@ -31,8 +31,14 @@ const UiUtils = {
   GetValidationStyle: (dataTp: DataType, value) => {
     return { color: !value || value?.length === 0 ? "#e84c4c" : "white" };
   },
-  GetSelectValidationStyle: (index: number) => {
-    return { color: !index || index <= 0 ? "#e84c4c" : "white" };
+  GetSelectValidationStyle: (index: number | string) => {
+    if (typeof index === "string") {
+      return {
+        color: !index || ("" + index).length <= 0 ? "#e84c4c" : "white",
+      };
+    } else {
+      return { color: !index || +index < 0 ? "#e84c4c" : "white" };
+    }
   },
   GetSubmitType: (id: number) => {
     return id > 0 ? VerboseType.PUT : VerboseType.POST;
@@ -49,7 +55,7 @@ const UiUtils = {
       if (datatp === DataType.ID) {
         return value !== undefined && +value > 0;
       } else if (datatp === DataType.NUMBER) {
-        return value !== undefined && +value;
+        return value !== undefined && +value >= 0;
       } else {
         return value !== undefined && ("" + value).trim().length > 0;
       }
@@ -86,18 +92,24 @@ const UiUtils = {
     }
     return "Info";
   },
-
   GetCreditCardColors(): ICatalogueItem[] {
     return [
-      { Id: 1, Key: "blue", Description: "Blue" },
-      { Id: 2, Key: "lightblue", Description: "Light blue" },
-      { Id: 3, Key: "tangerine", Description: "Tangerine" },
-      { Id: 4, Key: "platinum", Description: "Platinum" },
-      { Id: 5, Key: "red", Description: "Red" },
-      { Id: 6, Key: "yellow", Description: "Yellow" },
-      { Id: 7, Key: "gold", Description: "Gold" },
-      { Id: 8, Key: "black", Description: "Black" },
+      { Id: "blue", Description: "Blue" },
+      { Id: "lightblue", Description: "Light blue" },
+      { Id: "tangerine", Description: "Tangerine" },
+      { Id: "platinum", Description: "Platinum" },
+      { Id: "red", Description: "Red" },
+      { Id: "yellow", Description: "Yellow" },
+      { Id: "gold", Description: "Gold" },
+      { Id: "black", Description: "Black" },
     ];
+  },
+  GetFinancingDays(): ICatalogueItem[] {
+    const catItems: ICatalogueItem[] = [];
+    for (let index = 1; index <= 28; index++) {
+      catItems.push({ Id: index, Description: "" + index });
+    }
+    return catItems;
   },
 };
 export default UiUtils;

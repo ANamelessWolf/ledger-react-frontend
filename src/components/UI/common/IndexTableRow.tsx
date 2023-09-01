@@ -12,7 +12,6 @@ export interface IIndexTableRow {
 
 const dummyDelete = (id: number) => console.log("deleted: " + id);
 const defaultFilter = (row: object) =>{
-//  debugger;
     return true;
 } 
 

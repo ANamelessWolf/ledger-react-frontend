@@ -1,5 +1,5 @@
 export interface ICatalogueItem {
-  Id: number;
+  Id: number|string;
   Key?: string;
   Description: string;
 }
@@ -10,8 +10,14 @@ export interface IAppCatalogue {
   CardType: ICatalogueItem[];
   CreditCard: ICatalogueItem[];
   CreditCardColors: ICatalogueItem[];
+  FinancingDays: ICatalogueItem[];
+}
+
+export interface IUserData{
+  FullName: string,
 }
 
 export interface IAppContext {
+  user:IUserData;
   catalogue: IAppCatalogue;
 }

@@ -11,7 +11,11 @@ const AppContext = createContext<IAppContext>({
     CardType: [],
     CreditCard: [],
     CreditCardColors: [],
+    FinancingDays:[]
   },
+  user:{
+    FullName: ''
+  }
 });
 
 //Create Provider
@@ -21,7 +25,8 @@ export const AppProvider = (props) => {
   const [cardType, setCardType] = useState<ICatalogueItem[]>([]);
   const [creditCard, setCreditCard] = useState<ICatalogueItem[]>([]);
   const [cardColors, setCardColors] = useState<ICatalogueItem[]>([]);
-
+  const [financingDays, setFinancingDays] = useState<ICatalogueItem[]>([]);
+  
   const fetchHandler = (status: number, data: any) => {
     const financingTypes = data.financingEntityType.map((item) => {
       return { Id: item.id, Description: item.description };
@@ -43,6 +48,7 @@ export const AppProvider = (props) => {
     });
     setCreditCard(creditCard);
     setCardColors(UiUtils.GetCreditCardColors());
+    setFinancingDays(UiUtils.GetFinancingDays());
   };
 
   useEffect(() => {
@@ -52,12 +58,16 @@ export const AppProvider = (props) => {
   return (
     <AppContext.Provider
       value={{
+        user:{
+          FullName: "Miguel Angel Alanis Montes"
+        },
         catalogue: {
           FinancingType: financingType,
           FinancingEntity: financingEntity,
           CardType: cardType,
           CreditCard: creditCard,
           CreditCardColors: cardColors,
+          FinancingDays: financingDays,
         },
       }}
     >

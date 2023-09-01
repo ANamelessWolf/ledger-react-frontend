@@ -60,8 +60,6 @@ const ModalWindow: React.FC<IModalWindow> = ({
     if (onNoHandler !== undefined) {
       onNoHandler(data);
     }
-
-    console.log(data);
   };
 
   const buttons = getButtons(dialogueType);

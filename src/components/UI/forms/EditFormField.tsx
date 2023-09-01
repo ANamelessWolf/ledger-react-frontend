@@ -5,6 +5,11 @@ import { ControlType } from "../enums/ControlType";
 import { IChangeField, IFieldItem } from "../common/IFieldItem";
 import { ICatalogueItem } from "../../../context/ICatalogue";
 import UiUtils from "../../../utils/UiUtils";
+import { DataType } from "../enums/DataType";
+import MonthYearPicker, {
+  ParseExpirationDate,
+} from "../common/MonthYearPicker";
+import MESSAGES from "../../../data/messages";
 
 interface IEditFormField {
   field: IFieldItem;
@@ -34,6 +39,14 @@ const EditFormField: React.FC<IEditFormField> = ({
     return "";
   };
 
+  const getType = (dataType: DataType): string => {
+    if (dataType === DataType.NUMBER || dataType === DataType.MONEY) {
+      return "number";
+    } else {
+      return "text";
+    }
+  };
+
   const onValueChange = (e) => {
     setValue(e.target.value);
     if (field.Type === ControlType.Select && field.Selected !== undefined) {
@@ -54,6 +67,7 @@ const EditFormField: React.FC<IEditFormField> = ({
           {UiUtils.ToObligatory(obligatory, label)}
         </Form.Label>
         <Form.Control
+          type={getType(field.DataType)}
           value={value}
           placeholder={field.Placeholder}
           onChange={onValueChange}
@@ -66,10 +80,11 @@ const EditFormField: React.FC<IEditFormField> = ({
   ) {
     formField = (
       <Form.Group className="mb-3">
-        <Form.Label style={UiUtils.GetSelectValidationStyle(+value)}>
+        <Form.Label style={UiUtils.GetSelectValidationStyle(value)}>
           {UiUtils.ToObligatory(obligatory, label)}
         </Form.Label>
         <Form.Select id="catalogue" value={value} onChange={onValueChange}>
+          <option value={-1}>{MESSAGES.SELECT_OPTION}</option>
           {catalogue?.map((item: ICatalogueItem, index) => {
             return (
               <option key={index} value={item.Id}>
@@ -79,6 +94,30 @@ const EditFormField: React.FC<IEditFormField> = ({
           })}
         </Form.Select>
       </Form.Group>
+    );
+  } else if (field.Type === ControlType.DatePicker) {
+    formField = (
+      <Form.Group className="mb-3">
+        <Form.Label style={UiUtils.GetValidationStyle(field.DataType, value)}>
+          {UiUtils.ToObligatory(obligatory, label)}
+        </Form.Label>
+        <Form.Control
+          type="month"
+          value={value}
+          placeholder={field.Placeholder}
+          onChange={onValueChange}
+        />
+      </Form.Group>
+    );
+  } else if (field.Type === ControlType.MonthYear) {
+    formField = (
+      <MonthYearPicker
+        Field={field.Field}
+        Label={label}
+        Value={ParseExpirationDate(value)}
+        onChange={onChange}
+        Obligatory={obligatory}
+      />
     );
   }
   return formField;

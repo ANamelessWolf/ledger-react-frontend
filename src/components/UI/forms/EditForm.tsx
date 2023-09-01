@@ -20,9 +20,15 @@ interface IEditForm {
   blueprint: IEditViewBluePrint;
   data: any;
   route: string;
+  onChanged?: (data: any) => void;
 }
 
-const EditForm: React.FC<IEditForm> = ({ blueprint, data, route }) => {
+const EditForm: React.FC<IEditForm> = ({
+  blueprint,
+  data,
+  route,
+  onChanged = undefined,
+}) => {
   const navigate = useNavigate();
   const context = useContext(AppContext);
   const [formData, setFormData] = useState(data);
@@ -63,6 +69,9 @@ const EditForm: React.FC<IEditForm> = ({ blueprint, data, route }) => {
     }
     setFormData(() => dataCopy);
     setFormIsValid(validateForm(dataCopy));
+    if (onChanged !== undefined) {
+      onChanged(dataCopy);
+    }
   };
 
   const fetchHandler = (status: number, data: any) => {
@@ -102,8 +111,6 @@ const EditForm: React.FC<IEditForm> = ({ blueprint, data, route }) => {
       PUT(blueprint.Path, payload, fetchHandler, errorHandler);
     }
   };
-
-
 
   return (
     <Container

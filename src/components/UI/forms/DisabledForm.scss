@@ -3,3 +3,28 @@
   text-align: left;
 }
 
+.iconTop {
+  align-self: flex-start;
+  margin: 0px;
+  margin-top: 8px;
+  width: auto;
+  padding-left: 10px;
+}
+
+.zeroMargin {
+  margin: 0px;
+  padding: 0px;
+}
+
+.dayOfMonth {
+  font-weight: 700;
+  font-size: large;
+}
+
+.monthYearLabel {
+  align-self: center;
+  padding: 0px;
+  margin: 0px;
+  width: auto;
+  padding-left: 10px;
+}
