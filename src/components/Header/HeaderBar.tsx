@@ -5,8 +5,23 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../../logo.svg";
+import { useNavigate, useLocation } from "react-router-dom";
+import MESSAGES from "../../data/messages";
+
+export interface ILinkItem {
+  link: string;
+  header: string;
+}
+
 export default function HeaderBar() {
-  //const logo = "../../logo.svg";
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const adminLinks: ILinkItem[] = [
+    { link: "/financing_entity", header: MESSAGES.SECTION_FINANCING_ENT },
+    { link: "/credit_card", header: MESSAGES.SECTION_CREDIT_CARD },
+  ];
+
   return (
     <header>
       <Navbar
@@ -31,18 +46,17 @@ export default function HeaderBar() {
             <Nav className="me-auto">
               <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="#link">Link</Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
+              <NavDropdown title="Admin" id="basic-nav-dropdown">
+                {adminLinks.map((item, index) => {
+                  return (
+                    <NavDropdown.Item
+                      key={index}
+                      onClick={() => navigate(item.link)}
+                    >
+                      {item.header}
+                    </NavDropdown.Item>
+                  );
+                })}
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

@@ -9,6 +9,9 @@ const MESSAGES_ES = {
   SECTION_CREDIT_CARD: "Tarjetas",
   SELECT_OPTION: "Selecciona una opción",
 
+
+  
+
 };
 
 const MESSAGES = MESSAGES_ES;

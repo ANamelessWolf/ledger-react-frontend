@@ -28,7 +28,8 @@ function FinancingEntityEdit() {
   );
 
   const fetchHandler = (status: number, data: any) => {
-    setViewData(data);
+    const filteredData = data.filter((item) => item.name !== "Efectivo");
+    setViewData(filteredData);
     setIsProccesing(HttpUtils.LOADING_SUCCEED_STATE);
     toast.info("Financing data loaded");
   };

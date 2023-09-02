@@ -9,9 +9,7 @@ import CONST from "../../data/constants";
 import SpinningLoader from "../../components/UI/common/SpinningLoader";
 import UiUtils from "../../utils/UiUtils";
 import { toast } from "react-toastify";
-import CreditCardModel, {
-  ICreditCardView,
-} from "./CreditCardModel";
+import CreditCardModel, { ICreditCardView } from "./CreditCardModel";
 import IndexTable from "../../components/UI/common/IndexTable";
 import MESSAGES from "../../data/messages";
 
@@ -25,7 +23,8 @@ function CreditCardIndex() {
   );
 
   const fetchHandler = (status: number, data: any) => {
-    setViewData(data);
+    const filteredData = data.filter((item) => item.name !== "Cash Wallet");
+    setViewData(filteredData);
     setIsProccesing(HttpUtils.LOADING_SUCCEED_STATE);
     toast.info("Financing data loaded");
   };
@@ -37,12 +36,7 @@ function CreditCardIndex() {
 
   const refresh = () => {
     setIsProccesing(HttpUtils.LOADING_STATE);
-    GET(
-      CONST.END_POINTS.CREDIT_CARD,
-      fetchHandler,
-      undefined,
-      errorHandler
-    );
+    GET(CONST.END_POINTS.CREDIT_CARD, fetchHandler, undefined, errorHandler);
   };
 
   useEffect(() => {
