@@ -1,12 +1,18 @@
 const TABLE_NAMES = {
   FINANCIAL_ENTITY: "financing_entity",
   CREDIT_CARD: "credit_card",
+  VENDOR: "vendor",
+  CATEGORY:"category",
+  SUBCATEGORY:"subcategory"
 };
 
 const END_POINTS = {
+  CATALOGUE:"Catalogue",
   FINANCIAL_ENTITY: "FinancingEntity",
   CREDIT_CARD:"CreditCard",
-  CATALOGUE:"Catalogue"
+  VENDOR:"Vendor",
+  CATEGORY:"Category",
+  SUBCATEGORY:"SubCategory"
 };
 
 const API_URL =

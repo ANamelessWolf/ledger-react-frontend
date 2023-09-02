@@ -1,14 +1,14 @@
 import "./App.css";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { FinancingEntityRoutes, CreditCardRoutes } from "./routes/Routes";
+import { FinancingEntityRoutes, CreditCardRoutes, VendorRoutes, CategoryRoutes, SubCategoryRoutes } from "./routes/Routes";
 import AuthContainer from "./components/Auth/AuthContainer";
 import HeaderBar from "./components/Header/HeaderBar";
 import Footer from "./components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
 
 function App() {
-  const routes = [...FinancingEntityRoutes, ...CreditCardRoutes];
+  const routes = [...FinancingEntityRoutes, ...CreditCardRoutes, ...VendorRoutes, ...CategoryRoutes, ...SubCategoryRoutes];
   // const logo = require("./logo.svg") as string;
   return (
     <div className="App">

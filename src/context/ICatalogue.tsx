@@ -11,6 +11,9 @@ export interface IAppCatalogue {
   CreditCard: ICatalogueItem[];
   CreditCardColors: ICatalogueItem[];
   FinancingDays: ICatalogueItem[];
+  Vendor: ICatalogueItem[];
+  Category: ICatalogueItem[];
+  SubCategory: ICatalogueItem[];
 }
 
 export interface IUserData{

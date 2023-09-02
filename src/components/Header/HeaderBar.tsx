@@ -20,6 +20,9 @@ export default function HeaderBar() {
   const adminLinks: ILinkItem[] = [
     { link: "/financing_entity", header: MESSAGES.SECTION_FINANCING_ENT },
     { link: "/credit_card", header: MESSAGES.SECTION_CREDIT_CARD },
+    { link: "/category", header: MESSAGES.SECTION_CATEGORY },
+    { link: "/subcategory", header: MESSAGES.SECTION_SUBCATEGORY },
+    { link: "/vendor", header: MESSAGES.SECTION_VENDOR },
   ];
 
   return (

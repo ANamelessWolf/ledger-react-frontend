@@ -11,11 +11,14 @@ const AppContext = createContext<IAppContext>({
     CardType: [],
     CreditCard: [],
     CreditCardColors: [],
-    FinancingDays:[]
+    FinancingDays: [],
+    Category: [],
+    SubCategory: [],
+    Vendor: [],
   },
-  user:{
-    FullName: ''
-  }
+  user: {
+    FullName: "",
+  },
 });
 
 //Create Provider
@@ -26,7 +29,10 @@ export const AppProvider = (props) => {
   const [creditCard, setCreditCard] = useState<ICatalogueItem[]>([]);
   const [cardColors, setCardColors] = useState<ICatalogueItem[]>([]);
   const [financingDays, setFinancingDays] = useState<ICatalogueItem[]>([]);
-  
+  const [category, setCategory] = useState<ICatalogueItem[]>([]);
+  const [subCategory, setSubCategory] = useState<ICatalogueItem[]>([]);
+  const [vendor, setVendor] = useState<ICatalogueItem[]>([]);
+
   const fetchHandler = (status: number, data: any) => {
     const financingTypes = data.financingEntityType.map((item) => {
       return { Id: item.id, Description: item.description };
@@ -47,6 +53,22 @@ export const AppProvider = (props) => {
       return { Id: item.id, Description: item.description };
     });
     setCreditCard(creditCard);
+
+    const category = data.category.map((item) => {
+      return { Id: item.id, Description: item.description };
+    });
+    setCategory(category);
+
+    const subCategory = data.subCategory.map((item) => {
+      return { Id: item.id, Description: item.description };
+    });
+    setSubCategory(subCategory);
+
+    const vendor = data.vendor.map((item) => {
+      return { Id: item.id, Description: item.description };
+    });
+    setVendor(vendor);
+
     setCardColors(UiUtils.GetCreditCardColors());
     setFinancingDays(UiUtils.GetFinancingDays());
   };
@@ -58,8 +80,8 @@ export const AppProvider = (props) => {
   return (
     <AppContext.Provider
       value={{
-        user:{
-          FullName: "Miguel Angel Alanis Montes"
+        user: {
+          FullName: "Miguel Angel Alanis Montes",
         },
         catalogue: {
           FinancingType: financingType,
@@ -68,6 +90,9 @@ export const AppProvider = (props) => {
           CreditCard: creditCard,
           CreditCardColors: cardColors,
           FinancingDays: financingDays,
+          Category: category,
+          SubCategory: subCategory,
+          Vendor: vendor,
         },
       }}
     >

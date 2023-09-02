@@ -7,6 +7,9 @@ const MESSAGES_ES = {
 
   SECTION_FINANCING_ENT: "Entidad financiera",
   SECTION_CREDIT_CARD: "Tarjetas",
+  SECTION_VENDOR: "Vendor",
+  SECTION_CATEGORY: "Categorías",
+  SECTION_SUBCATEGORY: "Sub Categorías",
   SELECT_OPTION: "Selecciona una opción",
 
 

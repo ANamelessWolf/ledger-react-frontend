@@ -1,5 +1,6 @@
 import React from "react";
 import RowCrudButtonGroup from "./RowCrudButtonGroup";
+import { ActionType } from "../enums/ActionType";
 
 export interface IIndexTableRow {
   columns: string[];
@@ -8,6 +9,7 @@ export interface IIndexTableRow {
   path: string;
   filterHandler?: (row: object) => boolean;
   deleteHandler?: (id: number) => void | undefined;
+  actions?: ActionType[];
 }
 
 const dummyDelete = (id: number) => console.log("deleted: " + id);
@@ -22,6 +24,7 @@ const IndexTableRow: React.FC<IIndexTableRow> = ({
   path,
   filterHandler = defaultFilter,
   deleteHandler = dummyDelete,
+  actions = [ActionType.SHOW, ActionType.EDIT, ActionType.DELETE]
 }) => {
   if (filterHandler(row))
     return (
@@ -33,6 +36,7 @@ const IndexTableRow: React.FC<IIndexTableRow> = ({
             path={path}
             id={row[primary_key]}
             deleteHandler={deleteHandler}
+            actions={actions}
           />
       </tr>
     );

@@ -85,6 +85,7 @@ const IndexTable: React.FC<ITableView> = ({
                   row={dataRow}
                   path={blueprint.Path}
                   deleteHandler={confirmDelete}
+                  actions={blueprint.Actions}
                 />
               );
             })}

@@ -55,12 +55,12 @@ function CreditCardEdit() {
     setViewData(data);
     updateCardView(data);
     setIsProccesing(HttpUtils.LOADING_SUCCEED_STATE);
-    toast.info("Financing data loaded");
+    toast.info("Credit card data loaded");
   };
 
   const errorHandler = (message: string) => {
     setIsProccesing(HttpUtils.LOADING_FAIL_STATE);
-    toast.info("Error loading financing data");
+    toast.info("Error loading credit card data");
   };
 
   useEffect(() => {
